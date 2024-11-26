@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">  
+	<style>
+		model-viewer {
+		width: 100%; 
+		height: 100%;
+		position: absolute; /* Posiciona el model-viewer para ocupar toda la página */
+		top: 0;
+		left: 0;
+	}
+	</style>
+	   
+	<title>Modelo 3D_Piso 2 UAM-C</title>
+	</head>
+<body>
+    <!-- Insercción del modelo 3D (Codígo extraido del editor de https://modelviewer.dev/) -->
+
+    <model-viewer src="assets/Piso3.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
+        <div class="progress-bar hide" slot="progress-bar">
+            <div class="update-bar"></div>
+        </div>
+        <button slot="ar-button" id="ar-button">
+            
+        </button>
+    </model-viewer>
+
+   <!-- Importación del componente -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</body>
+</html>
