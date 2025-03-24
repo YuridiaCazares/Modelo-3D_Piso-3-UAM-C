@@ -1,36 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">  
-	<style>
-		model-viewer {
-		width: 100%; 
-		height: 100%;
-		position: absolute; /* Posiciona el model-viewer para ocupar toda la página */
-		top: 0;
-		left: 0;
-	}
-	</style>
-	   
-	<title>Modelo 3D_Piso 3 UAM-C</title>
-	</head>
-<body>
-    <!-- Insercción del modelo 3D (Codígo extraido del editor de https://modelviewer.dev/) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo 3D - Piso 3 UAM-C</title>
 
-    <model-viewer src="assets/Piso3.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
-        <div class="progress-bar hide" slot="progress-bar">
-            <div class="update-bar"></div>
-        </div>
-        <button slot="ar-button" id="ar-button">
-            <font style="vertical-align: inherit;">
-				<font style="vertical-align: inherit;">
-					Ver en tu espacio
-				</font>
-			</font>
-        </button>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        model-viewer {
+            width: 100%;
+            height: 80vh;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Explora el Piso 3 de la UAM-C</h2>
+
+    <model-viewer 
+        id="modelo3D"
+        src="assets/Piso3.glb" 
+        ar 
+        ar-modes="webxr scene-viewer quick-look" 
+        camera-controls 
+        tone-mapping="neutral"
+        poster="poster.webp" 
+        shadow-intensity="1">
     </model-viewer>
 
-   <!-- Importación del componente -->
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <script>
+        function irA(posicion, angulo) {
+            let modelo = document.getElementById('modelo3D');
+            modelo.setAttribute("camera-target", posicion);  // Posición de la cámara
+            modelo.setAttribute("camera-orbit", angulo);     // Ángulo de la vista
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const view = params.get("view");
+
+       
+        const vistas = {
+            GrupoInterno: { pos: "187.1m 45m -362m", ang: "-2.97deg 4.66deg 0.5m" }
+
+        };
+
+        if (view && vistas[view]) {
+            irA(vistas[view].pos, vistas[view].ang);
+        }
+    </script>
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
 </body>
 </html>
